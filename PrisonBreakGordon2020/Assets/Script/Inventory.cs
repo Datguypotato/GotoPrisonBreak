@@ -22,11 +22,12 @@ public class Inventory : MonoBehaviour
         {
             Destroy(this);
         }
+        items = new List<Item>();
     }
 
     private void Start()
     {
-        items = new List<Item>();
+        
         currWeight = 0;
     }
 

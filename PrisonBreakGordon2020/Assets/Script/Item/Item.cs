@@ -17,6 +17,7 @@ public abstract class Item
         name = "item";
         weight = 0;
     }
+
     public Item(string name, float weight)
     {
         this.name = name;
