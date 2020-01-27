@@ -4,8 +4,8 @@ using System.Collections.Generic;
 public abstract class Item
 {
     // properties
-    protected string name;
-    protected float weight;
+    public string name;
+    public float weight;
 
     // constructors
 

@@ -44,6 +44,36 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public bool RemoveItem(Item i)
+    {
+        if (items.Contains(i))
+        {
+            items.Remove(i);
+            currWeight -= i.weight;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool HasKey(int id)
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (items[i] is AccessItem)
+            {
+                AccessItem it = (AccessItem)items[i];
+                if (it.CanOpenDoor(id))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public int Count()
     {
         return items.Count;
