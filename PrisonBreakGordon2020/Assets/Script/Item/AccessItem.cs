@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AccessItem : Item
 {
+    [SerializeField]
     int doorId;
 
     public AccessItem(string name, float weight, int doorId) : base(name, weight)
