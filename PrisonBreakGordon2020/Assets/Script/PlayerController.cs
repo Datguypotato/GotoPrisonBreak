@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityStandardAssets.Characters.ThirdPerson;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -7,11 +9,22 @@ public class PlayerController : MonoBehaviour
     public KeyCode interactButton;
     public KeyCode openInventory;
 
-    public GameObject hudHolder;
+    public bool disableOnStart = true;
+
+    public Canvas canvas;
+    public Image[] imageSlots;
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+
+        if (disableOnStart)
+        {
+            canvas.enabled = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            FindObjectOfType<PlayerFollow>().RotateAroundPlayer = true;
+        }
+            
     }
 
     // Update is called once per frame
@@ -19,18 +32,32 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(openInventory))
         {
-            if (hudHolder.activeSelf)
+            if (canvas.enabled)
             {
-                hudHolder.SetActive(false);
+                canvas.enabled = false;
                 Cursor.lockState = CursorLockMode.Locked;
-                FindObjectOfType<PlayerFollow>().enabled = true;
+                FindObjectOfType<PlayerFollow>().RotateAroundPlayer = true;
             }
             else
             {
-                hudHolder.SetActive(true);
+                canvas.enabled = true;
                 Cursor.lockState = CursorLockMode.None;
-                FindObjectOfType<PlayerFollow>().enabled = false;
+                FindObjectOfType<PlayerFollow>().RotateAroundPlayer = false;
             }
         }
+    }
+
+    public void UpdateUI(Sprite sourceImage)
+    {
+        for (int i = 0; i < imageSlots.Length; i++)
+        {
+            if(imageSlots[i].sprite == null)
+            {
+                imageSlots[i].sprite = sourceImage;
+                return;
+            }
+        }
+
+        Debug.Log("iventory is full");
     }
 }

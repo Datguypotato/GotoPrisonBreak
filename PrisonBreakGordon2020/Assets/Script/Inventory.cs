@@ -37,6 +37,13 @@ public class Inventory : MonoBehaviour
         {
             items.Add(i);
             currWeight += i.weight;
+
+            if(i is BonusItem)
+            {
+                // update ui
+                BonusItem b = (BonusItem) i;
+
+            }
             return true;
         }
         else

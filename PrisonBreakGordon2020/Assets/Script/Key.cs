@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Key : MonoBehaviour
@@ -17,6 +18,7 @@ public class Key : MonoBehaviour
     public int keyId;
     public string keyName;
     public float weight;
+    public Sprite keySprite;
 
     Vector3 intialPos;
 
@@ -41,6 +43,9 @@ public class Key : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Inventory.instance.AddItem(this.AccessItem);
+            PlayerController pc = FindObjectOfType<PlayerController>();
+
+            pc.UpdateUI(keySprite);
 
             //updating UI
 
