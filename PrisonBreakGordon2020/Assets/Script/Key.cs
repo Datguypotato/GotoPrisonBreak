@@ -28,7 +28,7 @@ public class Key : MonoBehaviour
 
     private void Update()
     {
-        // simple "animation"
+        // simple animation
         float hoverHeight = (maxHeight + minHeight) / 2.0f;
         float hoverRange = maxHeight - minHeight;
 
@@ -41,6 +41,10 @@ public class Key : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Inventory.instance.AddItem(this.AccessItem);
+
+            //updating UI
+
+
             Destroy(this.gameObject);
         }
     }
