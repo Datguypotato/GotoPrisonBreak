@@ -11,6 +11,8 @@ public class Key : MonoBehaviour
     public float minHeight = -0.1f;
     public float hoverSpeed = 10.0f;
 
+    float randomizeStartPoint;
+
     // accessItem properties
     AccessItem AccessItem;
 
@@ -26,6 +28,7 @@ public class Key : MonoBehaviour
     {
         AccessItem = new AccessItem(keyName, weight, keyId);
         intialPos = transform.position;
+        randomizeStartPoint = Random.Range(0, 100);
     }
 
     private void Update()
@@ -34,7 +37,7 @@ public class Key : MonoBehaviour
         float hoverHeight = (maxHeight + minHeight) / 2.0f;
         float hoverRange = maxHeight - minHeight;
 
-        this.transform.position = Vector3.up + new Vector3(0, hoverHeight + Mathf.Cos(Time.time * hoverSpeed) * hoverRange, 0) + intialPos;
+        this.transform.position = Vector3.up + new Vector3(0, hoverHeight + Mathf.Cos((randomizeStartPoint + Time.time) * hoverSpeed) * hoverRange, 0) + intialPos;
         transform.Rotate(Vector3.up * rotateSpeed, Space.World);
     }
 
@@ -49,7 +52,7 @@ public class Key : MonoBehaviour
 
             //updating UI
 
-
+            
             Destroy(this.gameObject);
         }
     }

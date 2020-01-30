@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour
         {
             canvas.enabled = false;
             Cursor.lockState = CursorLockMode.Locked;
-            FindObjectOfType<PlayerFollow>().RotateAroundPlayer = true;
         }
             
     }
@@ -36,13 +35,11 @@ public class PlayerController : MonoBehaviour
             {
                 canvas.enabled = false;
                 Cursor.lockState = CursorLockMode.Locked;
-                FindObjectOfType<PlayerFollow>().RotateAroundPlayer = true;
             }
             else
             {
                 canvas.enabled = true;
                 Cursor.lockState = CursorLockMode.None;
-                FindObjectOfType<PlayerFollow>().RotateAroundPlayer = false;
             }
         }
     }

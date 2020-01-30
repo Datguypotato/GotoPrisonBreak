@@ -57,7 +57,7 @@ public class PlayerFollow : MonoBehaviour
 
             Quaternion camTurnAngle = Quaternion.AngleAxis(h, Vector3.up);
 
-            Quaternion camTurnAngleY = Quaternion.AngleAxis(v, transform.right);
+            Quaternion camTurnAngleY = Quaternion.AngleAxis(v, -transform.right);
 
             Vector3 newCameraOffset = camTurnAngle * camTurnAngleY * _cameraOffset;
 
