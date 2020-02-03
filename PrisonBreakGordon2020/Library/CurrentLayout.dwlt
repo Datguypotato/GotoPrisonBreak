@@ -210,15 +210,21 @@ MonoBehaviour:
     x: 0
     y: 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     width: 952
     height: 503
   m_MinSize: {x: 204, y: 222}
   m_MaxSize: {x: 4004, y: 4022}
 =======
+=======
+>>>>>>> Stashed changes
     width: 958
     height: 522
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_ActualView: {fileID: 17}
   m_Panes:
@@ -248,11 +254,16 @@ MonoBehaviour:
   m_MinSize: {x: 204, y: 222}
   m_MaxSize: {x: 4004, y: 4022}
 =======
+=======
+>>>>>>> Stashed changes
     y: 522
     width: 958
     height: 425
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_ActualView: {fileID: 15}
   m_Panes:
@@ -389,6 +400,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     x: 200
     y: 576
     width: 950
@@ -405,6 +417,7 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     m_HBaseRangeMin: -475
     m_HBaseRangeMax: 475
@@ -428,6 +441,7 @@ MonoBehaviour:
       x: 0
       y: 17
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       width: 950
       height: 408
     m_Scale: {x: 1, y: 1}
@@ -438,6 +452,7 @@ MonoBehaviour:
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
       x: -475
       y: -204
@@ -500,6 +515,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 190
     y: 73
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     width: 950
     height: 484
@@ -856,6 +872,11 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
+=======
+    m_SelectedInstanceIDs: 58fbffff
+    m_LastClickedInstanceID: -1192
+    m_HadKeyboardFocusLastEvent: 0
+>>>>>>> Stashed changes
 =======
     m_SelectedInstanceIDs: 58fbffff
     m_LastClickedInstanceID: -1192

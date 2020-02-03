@@ -3295,6 +3295,10 @@ Transform:
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 30.000002, y: 90.00001, z: 0}
 >>>>>>> Stashed changes
+=======
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 30.000002, y: 90.00001, z: 0}
+>>>>>>> Stashed changes
 --- !u!1 &227458406
 GameObject:
   m_ObjectHideFlags: 0
