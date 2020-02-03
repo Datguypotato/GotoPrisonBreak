@@ -1310,7 +1310,6 @@ GameObject:
   - component: {fileID: 3590040670657665360}
   - component: {fileID: 3590040670657640820}
   - component: {fileID: 3590040671901285961}
-  - component: {fileID: 3590040671901285938}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1377,7 +1376,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3590040670652183094}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: c2815a7ab32e42c4bb42f59caacb8ec1, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.3
@@ -1430,21 +1429,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxWeight: 100
   currWeight: 0
---- !u!114 &3590040671901285938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3590040670652183094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52432ebaeef9f994da60569a017d5d76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactButton: 111
-  openInventory: 105
-  hudHolder: {fileID: 0}
 --- !u!1 &3590040670652183378
 GameObject:
   m_ObjectHideFlags: 0

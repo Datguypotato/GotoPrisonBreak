@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// this was for testing purposes
+/// </summary>
 public class LevelEditorCameraControler : MonoBehaviour
 {
     public Transform editorTransform;
@@ -9,7 +12,6 @@ public class LevelEditorCameraControler : MonoBehaviour
 
     [Tooltip("percentage speed of time.delta time")]
     public float lerpSpeed;
-    public float lerpTime = 0;
     public bool startLerping = false;
 
     public Vector3 initialCameraPos;
@@ -41,10 +43,6 @@ public class LevelEditorCameraControler : MonoBehaviour
         // getting variables
         PlayerFollow playerCamera = FindObjectOfType<PlayerFollow>();
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-
-        // setting variables
-        startLerping = turnOnEditor;
-        lerpTime = 0;
 
         if (turnOnEditor)
         {

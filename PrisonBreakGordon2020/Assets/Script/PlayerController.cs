@@ -8,22 +8,24 @@ public class PlayerController : MonoBehaviour
 {
     public KeyCode interactButton;
     public KeyCode openInventory;
+    public KeyCode SwitchPlayerMode;
 
     public bool disableOnStart = true;
 
     public Canvas canvas;
     public Image[] imageSlots;
 
+    PlayerFollow cameraController;
+
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-
         if (disableOnStart)
         {
             canvas.enabled = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
-            
+
+        cameraController = FindObjectOfType<PlayerFollow>();
     }
 
     // Update is called once per frame
@@ -41,6 +43,15 @@ public class PlayerController : MonoBehaviour
                 canvas.enabled = true;
                 Cursor.lockState = CursorLockMode.None;
             }
+        }
+
+        if (Input.GetKeyDown(SwitchPlayerMode) && cameraController.editorTransform != null)
+        {
+            cameraController.isPlayerMode = !cameraController.isPlayerMode;
+            cameraController.SetupSwitchmode();
+
+            if(!cameraController.isPlayerMode)
+                Cursor.lockState = CursorLockMode.None;
         }
     }
 

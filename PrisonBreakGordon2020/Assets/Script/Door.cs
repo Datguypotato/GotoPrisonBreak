@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour
+public class Door : MonoBehaviour, IInteractable
 {
     public int id;
     public bool open = false;
@@ -37,8 +37,7 @@ public class Door : MonoBehaviour
         {
             if (Inventory.instance.HasKey(id))
             {
-                open = !open;
-                doorEffect.PlayOneShot(doorOpen);
+                Action();
             }
             else
             {
@@ -47,5 +46,11 @@ public class Door : MonoBehaviour
             }
             
         }
+    }
+
+    public void Action()
+    {
+        open = !open;
+        doorEffect.PlayOneShot(doorOpen);
     }
 }

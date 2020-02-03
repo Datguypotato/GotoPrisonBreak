@@ -50,7 +50,7 @@ public class Key : MonoBehaviour
 
             pc.UpdateUI(keySprite);
 
-            //updating UI
+            // updating UI
 
             
             Destroy(this.gameObject);
