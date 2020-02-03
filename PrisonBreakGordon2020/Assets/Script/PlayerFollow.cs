@@ -18,7 +18,6 @@ public class PlayerFollow : MonoBehaviour
     public bool RotateMiddleMouseButton = true;
 
     public float RotationsSpeed = 5.0f;
-
     public float CameraPitchMin = 1.5f;
 
     public float CameraPitchMax = 6.5f;
@@ -27,6 +26,7 @@ public class PlayerFollow : MonoBehaviour
     void Start()
     {
         _cameraOffset = transform.position - PlayerTransform.position;
+        controller = FindObjectOfType<LevelEditorCameraControler>();
     }
 
     private bool IsRotateActive
