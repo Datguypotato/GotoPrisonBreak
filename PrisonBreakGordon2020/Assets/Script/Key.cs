@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class Key : MonoBehaviour
+public class Key : MonoBehaviour, IInteractable
 {
     [Header("hover properties")]
     public float rotateSpeed = 1;
@@ -45,15 +45,20 @@ public class Key : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Inventory.instance.AddItem(this.AccessItem);
-            PlayerController pc = FindObjectOfType<PlayerController>();
-
-            pc.UpdateUI(keySprite);
-
-            // updating UI
-
-            
-            Destroy(this.gameObject);
+            Action();
         }
+    }
+
+    public void Action()
+    {
+        Inventory.instance.AddItem(this.AccessItem);
+        InventoryUI.instance.AddItemSlot(this.AccessItem, keySprite);
+
+        gameObject.SetActive(false);
+    }
+
+    public void Respawn()
+    {
+        // here comes dropping the item
     }
 }

@@ -12,7 +12,7 @@ public class Testing : MonoBehaviour
 
         Debug.Log("You have " + Inventory.instance.Count() + " item in your inventory");
 
-        Inventory.instance.RemoveItem(ball);
+        //Inventory.instance.RemoveItem(ball);
 
         Debug.Log("You have " + Inventory.instance.Count() + " item in your inventory");
 

@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     public bool disableOnStart = true;
 
     public Canvas canvas;
-    public Image[] imageSlots;
 
     PlayerFollow cameraController;
 
@@ -53,19 +52,5 @@ public class PlayerController : MonoBehaviour
             if(!cameraController.isPlayerMode)
                 Cursor.lockState = CursorLockMode.None;
         }
-    }
-
-    public void UpdateUI(Sprite sourceImage)
-    {
-        for (int i = 0; i < imageSlots.Length; i++)
-        {
-            if(imageSlots[i].sprite == null)
-            {
-                imageSlots[i].sprite = sourceImage;
-                return;
-            }
-        }
-
-        Debug.Log("iventory is full");
     }
 }

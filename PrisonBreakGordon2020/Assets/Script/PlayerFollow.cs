@@ -20,14 +20,12 @@ public class PlayerFollow : MonoBehaviour
 
     public float RotationsSpeed = 5.0f;
     public float CameraPitchMin = 1.5f;
-<<<<<<< Updated upstream
-    public float CameraPitchMax = 6.5f;
-=======
+
     public float CameraPitchMax = 6.5f;
 
     LevelEditorCameraControler controller;
     public float cameraSpeed = 5;
->>>>>>> Stashed changes
+
 
     [Header("Editor cam setting")]
 
@@ -40,17 +38,10 @@ public class PlayerFollow : MonoBehaviour
 
     Vector3 lastPlayerPos;
     Quaternion lastPlayerRot;
-<<<<<<< HEAD
 
     Vector2 boundx;
     Vector2 boundz;
 
-=======
-
-    Vector2 boundx;
-    Vector2 boundz;
-
->>>>>>> master
     public GameObject testObject;
     // Use this for initialization
     void Start()
@@ -79,7 +70,6 @@ public class PlayerFollow : MonoBehaviour
     // LateUpdate is called after Update methods
     void LateUpdate()
     {
-<<<<<<< Updated upstream
         if(isPlayerMode)
         {
             if (IsRotateActive)
@@ -89,25 +79,16 @@ public class PlayerFollow : MonoBehaviour
                 float v = Input.GetAxis("Mouse Y") * RotationsSpeed;
 
                 Quaternion camTurnAngle = Quaternion.AngleAxis(h, Vector3.up);
-<<<<<<< HEAD
 
                 Quaternion camTurnAngleY = Quaternion.AngleAxis(v, -transform.right);
 
                 Vector3 newCameraOffset = camTurnAngle * camTurnAngleY * _cameraOffset;
 
-=======
-
-                Quaternion camTurnAngleY = Quaternion.AngleAxis(v, -transform.right);
-
-                Vector3 newCameraOffset = camTurnAngle * camTurnAngleY * _cameraOffset;
-
->>>>>>> master
                 // Limit camera pitch
                 if (newCameraOffset.y < CameraPitchMin || newCameraOffset.y > CameraPitchMax)
                 {
                     newCameraOffset = camTurnAngle * _cameraOffset;
                 }
-<<<<<<< HEAD
 
                 _cameraOffset = newCameraOffset;
 
@@ -117,17 +98,6 @@ public class PlayerFollow : MonoBehaviour
 
             transform.position = Vector3.Slerp(transform.position, newPos, SmoothFactor);
 
-=======
-
-                _cameraOffset = newCameraOffset;
-
-            }
-
-            Vector3 newPos = PlayerTransform.position + _cameraOffset;
-
-            transform.position = Vector3.Slerp(transform.position, newPos, SmoothFactor);
-
->>>>>>> master
             if (LookAtPlayer || RotateAroundPlayer)
                 transform.LookAt(PlayerTransform);
         }
@@ -181,45 +151,5 @@ public class PlayerFollow : MonoBehaviour
             elapsedTime += Time.deltaTime * lerpSpeed;
             yield return new WaitForEndOfFrame();
         }
-=======
-        if (!controller.editActive)
-        {
-            if (IsRotateActive)
-            {
-
-                float h = Input.GetAxis("Mouse X") * RotationsSpeed;
-                float v = Input.GetAxis("Mouse Y") * RotationsSpeed;
-
-                Quaternion camTurnAngle = Quaternion.AngleAxis(h, Vector3.up);
-
-                Quaternion camTurnAngleY = Quaternion.AngleAxis(v, -transform.right);
-
-                Vector3 newCameraOffset = camTurnAngle * camTurnAngleY * _cameraOffset;
-
-                // Limit camera pitch
-                if (newCameraOffset.y < CameraPitchMin || newCameraOffset.y > CameraPitchMax)
-                {
-                    newCameraOffset = camTurnAngle * _cameraOffset;
-                }
-
-                _cameraOffset = newCameraOffset;
-
-            }
-
-            Vector3 newPos = PlayerTransform.position + _cameraOffset;
-
-            transform.position = Vector3.Slerp(transform.position, newPos, SmoothFactor);
-
-            if (LookAtPlayer || RotateAroundPlayer)
-                transform.LookAt(PlayerTransform);
-        }
-        else
-        {
-            float h = Input.GetAxis("Horizontal") * cameraSpeed * Time.deltaTime;
-            float v = Input.GetAxis("Vertical") * cameraSpeed * Time.deltaTime;
-
-            transform.position += new Vector3(v, 0, h);
-        }
->>>>>>> Stashed changes
     }
 }

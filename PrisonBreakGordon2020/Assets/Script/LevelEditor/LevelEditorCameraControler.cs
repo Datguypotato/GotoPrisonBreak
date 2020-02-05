@@ -17,6 +17,8 @@ public class LevelEditorCameraControler : MonoBehaviour
     public Vector3 initialCameraPos;
     public Quaternion initialCameraRot;
 
+    bool editActive;
+
     void Start()
     {
         if (GameObject.FindGameObjectWithTag("MainCamera"))
