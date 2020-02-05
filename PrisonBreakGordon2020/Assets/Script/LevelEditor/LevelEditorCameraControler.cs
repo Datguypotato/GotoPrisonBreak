@@ -8,12 +8,11 @@ using UnityEngine;
 public class LevelEditorCameraControler : MonoBehaviour
 {
     public Transform editorTransform;
-    Transform activeCameraTransform;
+    Transform cameraTransform;
 
     [Tooltip("percentage speed of time.delta time")]
     public float lerpSpeed;
-    public float lerpTime = 0;
-    public bool editActive = false;
+    public bool startLerping = false;
 
     public Vector3 initialCameraPos;
     public Quaternion initialCameraRot;
@@ -22,43 +21,37 @@ public class LevelEditorCameraControler : MonoBehaviour
     {
         if (GameObject.FindGameObjectWithTag("MainCamera"))
         {
-            activeCameraTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
+            cameraTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
+            Debug.Log("0");
         }
-        initialCameraPos = activeCameraTransform.position;
+        initialCameraPos = cameraTransform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab) && editorTransform != null)
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            editActive = !editActive;
-            SwitchMode(editActive);
+            startLerping = !startLerping;
+            SwitchMode(startLerping);
         }
+
     }
 
     void SwitchMode(bool turnOnEditor)
     {
         // getting variables
-        //PlayerFollow playerCamera = FindObjectOfType<PlayerFollow>();
+        PlayerFollow playerCamera = FindObjectOfType<PlayerFollow>();
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-
-        // setting variables
-        editActive = turnOnEditor;
-        lerpTime = 0;
 
         if (turnOnEditor)
         {
-            initialCameraPos = activeCameraTransform.position;
-            initialCameraRot = activeCameraTransform.rotation;
+            initialCameraPos = cameraTransform.position;
+            initialCameraRot = cameraTransform.rotation;
             StartCoroutine(MoveToPosition(editorTransform.position, editorTransform.rotation, 2));
-            //playerCamera.enabled = false;
         }
         else
-        {
             StartCoroutine(MoveToPosition(initialCameraPos, initialCameraRot, 2));
-            //playerCamera.enabled = true;
-        }
     }
 
     IEnumerator MoveToPosition(Vector3 endpos, Quaternion endRot, float time)
@@ -67,8 +60,8 @@ public class LevelEditorCameraControler : MonoBehaviour
         
         while(elapsedTime < time)
         {
-            activeCameraTransform.position = Vector3.Lerp(activeCameraTransform.position, endpos, elapsedTime / time);
-            activeCameraTransform.rotation = Quaternion.Lerp(activeCameraTransform.rotation, endRot, elapsedTime / time);
+            cameraTransform.position = Vector3.Lerp(cameraTransform.position, endpos, elapsedTime / time);
+            cameraTransform.rotation = Quaternion.Lerp(cameraTransform.rotation, endRot, elapsedTime / time);
             elapsedTime += Time.deltaTime * lerpSpeed;
             yield return new WaitForEndOfFrame();
         }
