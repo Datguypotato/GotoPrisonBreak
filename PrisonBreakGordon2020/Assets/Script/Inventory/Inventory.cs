@@ -6,7 +6,7 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory instance;
 
-    private List<Item> items;
+    private List<Item> items = new List<Item>(6);
 
     public float maxWeight = 100;
     public float currWeight = 0;
@@ -37,8 +37,6 @@ public class Inventory : MonoBehaviour
         {
             items.Add(i);
             currWeight += i.weight;
-
-
             return true;
         }
         else
@@ -47,19 +45,30 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public bool RemoveItem(Item i)
+    public bool RemoveItem(int index)
     {
-        // todo change the function so it can be called from InventoryUI
-        if (items.Contains(i))
+        if(items[index] != null)
         {
-            items.Remove(i);
-            currWeight -= i.weight;
+            items[index] = null;
+
+
             return true;
         }
         else
         {
             return false;
         }
+        //// todo change the function so it can be called from InventoryUI
+        //if (items.Contains(i))
+        //{
+        //    items.Remove(i);
+        //    currWeight -= i.weight;
+        //    return true;
+        //}
+        //else
+        //{
+        //    return false;
+        //}
     }
 
     public bool HasKey(int id)

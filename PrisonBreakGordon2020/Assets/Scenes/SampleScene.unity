@@ -1752,7 +1752,7 @@ MonoBehaviour:
   RotateMiddleMouseButton: 0
   RotationsSpeed: 5
   CameraPitchMin: 1.5
-  CameraPitchMax: 4
+  CameraPitchMax: 3.5
   cameraSpeed: 5
   editorTransform: {fileID: 0}
   clampRadius: {x: 0, y: 0, z: 0}
@@ -3337,7 +3337,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 42.77, y: 20.94}
+  m_AnchoredPosition: {x: 42.77, y: 18.3}
   m_SizeDelta: {x: 38, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &7674185185218245557
@@ -3360,7 +3360,7 @@ PrefabInstance:
     - target: {fileID: 3457245035623543092, guid: 74d32fa2e804a17498a4b303042d8d52,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.3
+      value: 0.087
       objectReference: {fileID: 0}
     - target: {fileID: 3457245035623543092, guid: 74d32fa2e804a17498a4b303042d8d52,
         type: 3}
@@ -3412,7 +3412,8 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7674185186137561643, guid: 74d32fa2e804a17498a4b303042d8d52, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 74d32fa2e804a17498a4b303042d8d52, type: 3}
 --- !u!1 &8043483875814949093
 GameObject:
