@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":false,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":21.421510696411134,"y":-12.67049789428711,"z":-0.2561981678009033},"rotation":{"x":0.21456210315227509,"y":0.7253717184066773,"z":-0.2615208923816681,"w":0.5998811721801758},"size":35.2348518371582,"orthographic":false}
@@ -11,3 +12,6 @@
 =======
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":false,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":21.421510696411134,"y":-12.67049789428711,"z":-0.2561981678009033},"rotation":{"x":0.21456210315227509,"y":0.7253717184066773,"z":-0.2615208923816681,"w":0.5998811721801758},"size":35.2348518371582,"orthographic":false}
 >>>>>>> parent of 1a096c8... Auto stash before merge of "master" and "origin/master"
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":false,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":21.421510696411134,"y":-12.67049789428711,"z":-0.2561981678009033},"rotation":{"x":0.21456210315227509,"y":0.7253717184066773,"z":-0.2615208923816681,"w":0.5998811721801758},"size":35.2348518371582,"orthographic":false}
+>>>>>>> master

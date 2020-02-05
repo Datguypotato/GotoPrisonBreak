@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 =======
@@ -31,6 +32,8 @@ Material:
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> master
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
@@ -55,9 +58,12 @@ Material:
     m_Floats: []
     m_Colors:
     - _Tint: {r: 0, g: 0, b: 0, a: 1}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
 >>>>>>> parent of 1a096c8... Auto stash before merge of "master" and "origin/master"
+=======
+>>>>>>> master
