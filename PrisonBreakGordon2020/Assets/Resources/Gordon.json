@@ -1,0 +1,12 @@
+{
+	"firstName": "Gordon",
+	"lastName": "Cheung",
+	"isAlive": true,
+	"age": "18",
+	"adress":
+	{
+		"Street": "Liviuslaan",
+		"Number": "39",
+	}
+
+}

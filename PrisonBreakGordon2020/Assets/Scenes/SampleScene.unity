@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -446,7 +446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &46688973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -867,7 +867,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &120498742
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1959,7 +1959,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh13258
+  m_Name: pb_Mesh14514
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2388,7 +2388,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &676672724
 Light:
   m_ObjectHideFlags: 0
@@ -2495,7 +2495,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1161251505
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2818,11 +2818,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1329816058}
-  - component: {fileID: 1329816057}
-  - component: {fileID: 1329816056}
-  - component: {fileID: 1329816055}
-  - component: {fileID: 1329816054}
+  - component: {fileID: 1227322845}
+  - component: {fileID: 1227322844}
+  - component: {fileID: 1227322843}
+  - component: {fileID: 1227322842}
+  - component: {fileID: 1227322846}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -3355,6 +3355,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3590040670652183094, guid: e154a44ae7f71714097da57c49a8f376,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3590040670651926450, guid: e154a44ae7f71714097da57c49a8f376,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3418,7 +3423,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh13290
+  m_Name: pb_Mesh14546
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4069,7 +4074,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1911481787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4129,6 +4134,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 1924821232754582226, guid: aee4e5445f3de6642805b31d906c5e2c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1924821232754582224, guid: aee4e5445f3de6642805b31d906c5e2c,
         type: 3}
@@ -4223,7 +4233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2045180574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5843,6 +5853,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Key0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846972629014283047, guid: 74d32fa2e804a17498a4b303042d8d52,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3457245035623543092, guid: 74d32fa2e804a17498a4b303042d8d52,
         type: 3}
