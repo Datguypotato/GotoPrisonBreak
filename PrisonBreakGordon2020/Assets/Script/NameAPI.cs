@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
 using SimpleJSON;
@@ -18,7 +19,7 @@ public class NameAPI : MonoBehaviour
     {
         //if (nameInput.text != "")
         {
-            StartCoroutine(GetAPiData(baseUrl + "Gordon"));
+            StartCoroutine(GetAPiData(baseUrl + nameInput.text));
         }
     }
 
@@ -38,25 +39,30 @@ public class NameAPI : MonoBehaviour
             }
             else
             {
+                // download text from website
                 Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
                 JSONNode node = JSON.Parse(webRequest.downloadHandler.text);
                 Dictionary<string, float> countryInfo = new Dictionary<string, float>();
                 
+                // Get relevant data
                 for (int i = 0; i < node[1].Count; i++)
                 {
-                    JSONNode countryParent = node[1][i];
-                    for (int x = 0; x < countryParent[x]; x++)
-                    {
-                        countryInfo.Add(node[i][x][0], node[i][x][1]);
-                    }
+                    JSONNode parentNode = node[1][i];
+                    Debug.Log(node[1].Count);
+                    countryInfo.Add(parentNode[0], parentNode[1]);
                 }
 
-                ShowContent.text = node[0] + "\n" + "Country: " + node[1][0][0].ToString() + "\nPossiblity: " + node[1][0][1];
+                // show relevant data
+
+                // name
+                ShowContent.text = node[0];
 
                 foreach (KeyValuePair<string, float> info in countryInfo)
                 {
-                    Debug.Log(info.Key + "\n" + info.Value);
+                    ShowContent.text += "\nCountry ID: " + info.Key + "\nPossiblity: " + Math.Round(info.Value, 2) + "%";
                 }
+
+
             }
         }
     }
