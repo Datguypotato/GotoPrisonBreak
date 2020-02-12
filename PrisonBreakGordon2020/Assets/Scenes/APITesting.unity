@@ -922,6 +922,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameInput: {fileID: 1477906259}
   ShowContent: {fileID: 1295449580}
+  lastPercent: 4.08
 --- !u!1 &1295449578
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,8 +1008,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

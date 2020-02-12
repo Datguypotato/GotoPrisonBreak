@@ -14,6 +14,7 @@ public class NameAPI : MonoBehaviour
 
     private string baseUrl = "https://api.nationalize.io?name=";
 
+    public double lastPercent;
 
     public void ButtonClick()
     {
@@ -42,14 +43,17 @@ public class NameAPI : MonoBehaviour
                 // download text from website
                 Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
                 JSONNode node = JSON.Parse(webRequest.downloadHandler.text);
-                Dictionary<string, float> countryInfo = new Dictionary<string, float>();
+                Info[] infos = new Info[3];
+                //Dictionary<string, string> countryInfo = new Dictionary<string, string>();
                 
                 // Get relevant data
                 for (int i = 0; i < node[1].Count; i++)
                 {
                     JSONNode parentNode = node[1][i];
-                    Debug.Log(node[1].Count);
-                    countryInfo.Add(parentNode[0], parentNode[1]);
+                    //Debug.Log(node[1].Count);
+                    infos[i].countryCode = parentNode[0];
+                    infos[i].percent = parentNode[1];
+                    //countryInfo.Add(parentNode[0], parentNode[1]);
                 }
 
                 // show relevant data
@@ -57,13 +61,21 @@ public class NameAPI : MonoBehaviour
                 // name
                 ShowContent.text = node[0];
 
-                foreach (KeyValuePair<string, float> info in countryInfo)
+                foreach (Info info in infos)
                 {
-                    ShowContent.text += "\nCountry ID: " + info.Key + "\nPossiblity: " + Math.Round(info.Value, 2) + "%";
+                    //Debug.Log(info.Value);
+                    //lastPercent = info.Value;
+                    ShowContent.text += "\nCountry ID: " + info.countryCode + "\nPossiblity: " + info.percent.Remove(4, info.percent.Length - 4) + "%";
                 }
 
 
             }
         }
+    }
+
+    public struct Info
+    {
+        public string countryCode;
+        public string percent;
     }
 }
