@@ -10,9 +10,9 @@ public abstract class BaseJSONRequest : MonoBehaviour
 {
     protected string baseUrl;
 
-    public abstract void RequestJson();
+    public virtual void Request() { }
 
-    protected IEnumerator GetRequest(string url)
+    protected IEnumerator RequestJson(string url)
     {
         using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
         {

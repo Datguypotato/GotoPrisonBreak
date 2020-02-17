@@ -6,7 +6,7 @@ using SimpleJSON;
 using TMPro;
 using UnityEngine;
 
-public class XKCDApi : BaseJSONRequest
+public class XKCDApi : JSONImageRequest
 {
     string endUrl = "/info.0.json";
 
@@ -17,14 +17,14 @@ public class XKCDApi : BaseJSONRequest
     void Start()
     {
         baseUrl = "https://xkcd.com/";
-        RequestJson();
+        Request();
     }
 
-    public override void RequestJson()
+    public override void Request()
     {
         // getting a random comic
         int randomComic = Random.Range(0, 666);
-        StartCoroutine(GetRequest(baseUrl + randomComic + endUrl));
+        StartCoroutine(RequestJson(baseUrl + randomComic + endUrl));
     }
 
     // old IEnumerator
@@ -56,28 +56,36 @@ public class XKCDApi : BaseJSONRequest
 
     protected override void ShowData(JSONNode node)
     {
-        StartCoroutine(GetImage(node[8]));
+        StartCoroutine(RequestImage(node[8]));
         imageTitle.text = node[5];
     }
 
-    IEnumerator GetImage(string url)
+    protected override void ShowTexture(Texture2D texture)
     {
-        using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(url))
-        {
-            yield return uwr.SendWebRequest();
-
-            if (uwr.isNetworkError || uwr.isHttpError)
-            {
-                Debug.Log(uwr.error);
-            }
-            else
-            {
-                // Get downloaded asset bundle
-                Texture2D texture = DownloadHandlerTexture.GetContent(uwr);
-                //xkcdImage.rectTransform.sizeDelta = new Vector2(texture.width, texture.height);
-                xkcdImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
-                xkcdImage.preserveAspect = true;
-            }
-        }
+        xkcdImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+        xkcdImage.preserveAspect = true;
     }
+
+    //IEnumerator GetImage(string url)
+    //{
+    //    using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(url))
+    //    {
+    //        yield return uwr.SendWebRequest();
+
+    //        if (uwr.isNetworkError || uwr.isHttpError)
+    //        {
+    //            Debug.Log(uwr.error);
+    //        }
+    //        else
+    //        {
+    //            // Get downloaded asset bundle
+    //            Texture2D texture = DownloadHandlerTexture.GetContent(uwr);
+    //            //xkcdImage.rectTransform.sizeDelta = new Vector2(texture.width, texture.height);
+    //            xkcdImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+    //            xkcdImage.preserveAspect = true;
+    //        }
+    //    }
+    //}
+
+
 }

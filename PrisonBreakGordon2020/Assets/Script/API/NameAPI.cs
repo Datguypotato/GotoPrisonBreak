@@ -14,12 +14,12 @@ public class NameAPI : BaseJSONRequest
 
     public double lastPercent;
 
-    public override void RequestJson()
+    public override void Request()
     {
         baseUrl = "https://api.nationalize.io?name=";
         if (nameInput.text != "")
         {
-            StartCoroutine(GetRequest(baseUrl + nameInput.text));
+            StartCoroutine(RequestJson(baseUrl + nameInput.text));
         }
     }
 
