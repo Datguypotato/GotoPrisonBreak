@@ -71,5 +71,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             m_Character.Move(m_Move, crouch, m_Jump);
             m_Jump = false;
         }
+
+        public void StopMovement()
+        {
+            m_Character.Move(Vector3.zero, false, false);
+        }
     }
 }

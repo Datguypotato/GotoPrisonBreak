@@ -8,17 +8,17 @@ using UnityEngine;
 
 public class MalApi : JSONImageRequest
 {
-    public TMP_InputField inputField;
-    public TMP_Text text;
+    //public TMP_InputField inputField;
+    //public TMP_Text text;
 
     public Image animeImage;
 
     string animeImageUrl;
-    string MALUsername = "datguypotato";
+    string MALUsername;
 
     string randomAnimeName;
 
-    ApiState currState = ApiState.MyAnimeListUser;
+    ApiState currState = ApiState.GetRandomAnime;
 
     enum ApiState
     {
@@ -32,21 +32,32 @@ public class MalApi : JSONImageRequest
         Request();
     }
 
+    public bool AssignUsername(string username)
+    {
+        if(username != "")
+        {
+            MALUsername = username;
+            return true;
+        }
+
+        return false;
+    }
+
     public override void Request()
     {
         switch (currState)
         {
             case ApiState.GetRandomAnime:
-                baseUrl = "https://api.jikan.moe/v3/season/" + DateTime.Now.Year + "/" + GetSeason(DateTime.Now);
+                baseUrl = "https://api.jikan.moe/v3/user/" + "datguypotato/animelist/completed";
                 break;
             case ApiState.AnimeQRCode:
                 baseUrl = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + animeImageUrl;
                 break;
             case ApiState.MyAnimeListUser:
-                MALUsername = inputField.text;
                 baseUrl = "https://api.jikan.moe/v3/user/" + MALUsername + "/animelist/completed";
                 break;
         }
+
         Debug.Log("Requesting JSON ......\n" + baseUrl);
         if(currState == ApiState.GetRandomAnime || currState == ApiState.MyAnimeListUser)
         {
@@ -67,7 +78,7 @@ public class MalApi : JSONImageRequest
                 JSONNode randomAnimeNode = node["anime"][UnityEngine.Random.Range(0, node["anime"].Count)];
 
                 // assign JSON
-                text.text = randomAnimeNode["title"];
+                //text.text = randomAnimeNode["title"];
                 animeImageUrl = randomAnimeNode["image_url"];
                 randomAnimeName = randomAnimeNode["title"];
 
@@ -78,13 +89,13 @@ public class MalApi : JSONImageRequest
                 // check if user has completed the serie
                 for (int i = 0; i < node["anime"].Count; i++)
                 {
-                    JSONNode animeNode = node["anime"];
-                    Debug.Log(animeNode[i]["title"]);
-                    if(animeNode[i]["title"] == randomAnimeName)
+                    JSONNode animeNode = node["anime"][i];
+                    Debug.Log(animeNode["title"]);
+                    if(animeNode["title"] == randomAnimeName)
                     {
-                        // activate last door
-                        Debug.Log("Found it");
-                        return;
+                        // check if completed
+                        if (animeNode["watching status"] == "2")
+                            Debug.Log("anime is completed");
                     }
                 }
                 break;
