@@ -48,19 +48,8 @@ public class MALEnterUsername : BaseJSONRequest
 
     public void Enter()
     {
-        if (mal.AssignUsername(inputUsername.text))
-        {
-            // check if user exist
-
-            // activate userMovement
-            character.enabled = true;
-
-            // close UI
-            inputUsername.gameObject.SetActive(false);
-            Cursor.lockState = CursorLockMode.Locked;
-
-            Debug.Log(mal.AssignUsername(inputUsername.text));
-        }
+        // check if user exist
+        StartCoroutine(RequestJson("https://api.jikan.moe/v3/user/") + inputUsername.text);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -93,6 +82,16 @@ public class MALEnterUsername : BaseJSONRequest
     protected override void ShowData(JSONNode node)
     {
         // show if user exist
-        throw new System.NotImplementedException();
+        if(node["error"] == null)
+        {
+            // activate userMovement
+            character.enabled = true;
+
+            // close UI
+            inputUsername.gameObject.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+
+            Debug.Log(mal.AssignUsername(inputUsername.text));
+        }
     }
 }
