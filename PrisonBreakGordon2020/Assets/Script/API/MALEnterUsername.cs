@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityStandardAssets.Characters.ThirdPerson;
+using UnityEngine.UI;
 using UnityEngine;
 using SimpleJSON;
 
 public class MALEnterUsername : BaseJSONRequest
 {
     public TMP_InputField inputUsername;
-    public TMP_Text worldspaceUsername;
+
+    public Sprite redX;
+    public Image marker;
 
     MalApi mal;
     ThirdPersonUserControl character;
@@ -49,23 +52,26 @@ public class MALEnterUsername : BaseJSONRequest
     public void Enter()
     {
         // check if user exist
-        StartCoroutine(RequestJson("https://api.jikan.moe/v3/user/") + inputUsername.text);
+        Debug.Log(inputUsername.text);
+        StartCoroutine(RequestJson("https://api.jikan.moe/v3/user/" + inputUsername.text));
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            // update inputfield to worldspace 
-            inputUsername.gameObject.SetActive(true);
-            inputUsername.text = worldspaceUsername.text;
+            if (Input.GetKeyDown(KeyCode.O) && !inputUsername.gameObject.activeSelf)
+            {
+                // update inputfield to worldspace 
+                inputUsername.gameObject.SetActive(true);
 
-            // open UI
-            inputUsername.gameObject.SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
+                // open UI
+                inputUsername.gameObject.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
 
-            character = other.gameObject.GetComponent<ThirdPersonUserControl>();
-            StartCoroutine(StopPlayerMovement());
+                character = other.gameObject.GetComponent<ThirdPersonUserControl>();
+                StartCoroutine(StopPlayerMovement());
+            }
         }
     }
 
@@ -87,11 +93,17 @@ public class MALEnterUsername : BaseJSONRequest
             // activate userMovement
             character.enabled = true;
 
-            // close UI
+            // UI
             inputUsername.gameObject.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
 
-            Debug.Log(mal.AssignUsername(inputUsername.text));
+            Debug.Log(node["username"]);
+            mal.AssignUsername(node["username"]);
+        }
+        else
+        {
+            marker.sprite = redX;
+            Debug.Log("LMAO dude doesn't exist you dip");
         }
     }
 }

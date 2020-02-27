@@ -29,18 +29,17 @@ public class MalApi : JSONImageRequest
 
     private void Start()
     {
-        Request();
+        //Request();
     }
 
-    public bool AssignUsername(string username)
+    public void AssignUsername(string username)
     {
         if(username != "")
         {
             MALUsername = username;
-            return true;
+            Request();
         }
-
-        return false;
+        
     }
 
     public override void Request()

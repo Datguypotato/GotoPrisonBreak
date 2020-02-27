@@ -6,6 +6,7 @@ public class Door : MonoBehaviour, IInteractable
 {
     public int id;
     public bool open = false;
+    public bool locked;
     
     private float initialRotation;
 
@@ -20,14 +21,17 @@ public class Door : MonoBehaviour, IInteractable
 
     void Update()
     {
-        if (open && transform.rotation.eulerAngles.y < initialRotation + 80)
+        if (!locked)
         {
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, initialRotation + 80, 0), 5);
-        }
-        else if (!open && transform.rotation.eulerAngles.y > initialRotation)
-        {
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, initialRotation, 0), 5);
-            
+            if (open && transform.rotation.eulerAngles.y < initialRotation + 80)
+            {
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, initialRotation + 80, 0), 5);
+            }
+            else if (!open && transform.rotation.eulerAngles.y > initialRotation)
+            {
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, initialRotation, 0), 5);
+
+            }
         }
     }
 
