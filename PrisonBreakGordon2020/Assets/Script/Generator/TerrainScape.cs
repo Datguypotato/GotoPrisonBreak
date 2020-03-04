@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class TerrainScape : LandScape
 {
-
-
-    private Terrain t;
+    public Terrain t;
+    public TerrainData tData;
 
     private void Start()
     {
@@ -24,22 +23,28 @@ public class TerrainScape : LandScape
 
     public override void Generate()
     {
-        Terrain.activeTerrain.terrainData.heightmapResolution = ProceduralGenerator.instance.world.gridSize;
-        Terrain.activeTerrain.terrainData.SetHeights(0, 0, ProceduralGenerator.instance.world.heights);
-        StartCoroutine(Wavy());
+        tData.heightmapResolution = ProceduralGenerator.instance.world.gridSize;
+        tData.SetHeights(0, 0, ProceduralGenerator.instance.world.heights);
     }
 
-    IEnumerator Wavy()
-    {
-        for (int i = 0; i < pre; i++)
-        {
+    //does not work too heavy for computers
+//    IEnumerator GenerateWave()
+//    {
+//        ProceduralWorld w = ProceduralGenerator.instance.world;
+//        float[,] heights = new float[w.heights.GetLength(0), w.heights.GetLength(1)];
 
-        }
 
-        ProceduralGenerator.instance.Test();
-        Terrain.activeTerrain.terrainData.SetHeights(0, 0, ProceduralGenerator.instance.world.heights);
+//        for (int x = 0; x < 64; x++)
+//        {
+//            for (int z = 0; z < 64; z++)
+//            {
+//                float randomHeight = Mathf.Cos(x + z + Time.time) / w.detail * w.maxHeight;
 
-        yield return new WaitForEndOfFrame();
-        StartCoroutine(Wavy());
-    }
+//                heights[x, z] = randomHeight;
+//                tData.SetHeightsDelayLOD(0, 0, heights);
+//            }
+//        }
+//        yield return new WaitForSeconds(1);
+//        StartCoroutine(GenerateWave());
+//    }
 }

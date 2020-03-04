@@ -388,6 +388,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b21932673a8cbd449faaabcbb0f605e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  t: {fileID: 1307885840}
+  tData: {fileID: 15600000, guid: 455f99ee2b5fa90428cb74a3f663017f, type: 2}
 --- !u!114 &1307885843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,7 +406,7 @@ MonoBehaviour:
     genType: 2
     maxHeight: 0.2
     minHeight: 0
-    gridSize: 512
+    gridSize: 64
     detail: 100
     seed: 10
 --- !u!1 &1593505623

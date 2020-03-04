@@ -22,20 +22,17 @@ public class ProceduralGenerator : MonoBehaviour
         {
             Destroy(this);
         }
+
+        world = new ProceduralWorld(world.minHeight, world.maxHeight, world.gridSize, world.detail, world.seed, world.genType);
+        SetSeed(world.seed);
     }
 
     private void Start()
     {
-        world = new ProceduralWorld(world.minHeight, world.maxHeight, world.gridSize, world.detail, world.seed, world.genType);
-        Test();
+
     }
 
-    public void Test()
-    {
-        world.Generate();
-    }
-
-    public void SetSeet(int newSeed)
+    public void SetSeed(int newSeed)
     {
         seed = newSeed;
         Random.InitState(seed);

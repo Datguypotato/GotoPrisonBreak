@@ -36,7 +36,7 @@ public class ProceduralWorld
 
     public void Generate()
     {
-        Debug.Log("Generate");
+        Debug.Log("0");
         for (int x = 0; x < heights.GetLength(0); x++)
         {
             for (int z = 0; z < heights.GetLength(1); z++)
@@ -66,6 +66,8 @@ public class ProceduralWorld
         }
 
     }
+
+
 }
 
 public enum GenerationType
@@ -73,5 +75,4 @@ public enum GenerationType
     Random,
     Perlin,
     cosine,
-    wave
 }
