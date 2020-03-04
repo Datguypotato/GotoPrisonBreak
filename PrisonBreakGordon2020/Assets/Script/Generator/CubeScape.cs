@@ -2,53 +2,84 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeScape : MonoBehaviour
+public class CubeScape : LandScape
 {
     public GameObject prefab; //= GameObject.CreatePrimitive(PrimitiveType.Cube);
+    GameObject[,] gridCubes;
 
-    public float maxHeight = 1f;
-    public float minHeight = 0f;
 
-    public int gridSize = 5;
-    [Tooltip("The lower the number the more difference in height")]
-    public float detail = 5.0f;
+    //water properties
+    public float colorTreshold = 0.1f;
+    public float colorAmplifier = 1.5f;
 
     private void Start()
     {
-        ProceduralGenerator.instance.SetSeet(10);
+        //ProceduralGenerator.instance.SetSeet(10);
         Generate();
-
-        
     }
 
-    public void Generate()
+    public override void Generate()
     {
-        if(ProceduralGenerator.instance != null)
+        Debug.Log("Create world");
+        Clean();
+        if (ProceduralGenerator.instance != null)
         {
-            for (int x = 0; x < gridSize; x++)
+            ProceduralWorld w = ProceduralGenerator.instance.world;
+            gridCubes = new GameObject[w.heights.GetLength(0), w.heights.GetLength(1)];
+
+            for (int x = 0; x < w.heights.GetLength(0); x++)
             {
-                for (int z = 0; z < gridSize; z++)
+                for (int z = 0; z < w.heights.GetLength(1); z++)
                 {
-                    //float r = Random.Range(minHeight, maxHeight);
-                    float perlinX = x / detail + ProceduralGenerator.instance.GetPerlinSeed();
-                    float perlinZ = z / detail + ProceduralGenerator.instance.GetPerlinSeed();
-                    float r = (Mathf.PerlinNoise(perlinX, perlinZ) -minHeight) * maxHeight;
+                    //int y = ;
 
-
-                    Vector3 randomPos = new Vector3(x, r, z) + transform.position;
-                    GameObject temp = Instantiate(prefab, randomPos, Quaternion.identity, ProceduralGenerator.instance.transform);
+                    Vector3 pos = transform.position + new Vector3(x, ProceduralGenerator.instance.world.heights[x, z], z);
+                    GameObject temp = Instantiate(prefab, pos, Quaternion.identity, transform);
 
                     // color
-                    float height = 1 - temp.transform.position.y / maxHeight;
-                    temp.GetComponent<MeshRenderer>().material.color = new Color(height, height, height);
+                    float height = 1 - temp.transform.position.y / ProceduralGenerator.instance.world.maxHeight;
+                    temp.GetComponent<MeshRenderer>().material.color = new Color(0, 0, height * 1.5f);
+                    gridCubes[x, z] = temp;
                 }
             }
-
+            //StartCoroutine(WaveWorld());
         }
         else
         {
             Debug.LogError("There is no ProceduralGenerator class in this scene");
         }
-        
+    }
+
+    public override void Clean()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+    IEnumerator WaveWorld()
+    {
+
+        List<GameObject> temps = new List<GameObject>();
+
+        for (int x = 0; x < 35; x++)
+        {
+            for (int z = 0; z < 35; z++)
+            {
+                Vector3 pos = transform.position + new Vector3(x, Mathf.Cos(x + z + Time.time), z);
+                gridCubes[x, z].transform.position = pos;
+
+
+                // color
+                float height = gridCubes[x, z].transform.position.y / 1;
+                if(height > colorTreshold)
+                {
+                    gridCubes[x, z].GetComponent<MeshRenderer>().material.color = new Color(0, 0, height * colorAmplifier);
+                }
+            }
+        }
+        yield return new WaitForEndOfFrame();
+        StartCoroutine(WaveWorld());
     }
 }

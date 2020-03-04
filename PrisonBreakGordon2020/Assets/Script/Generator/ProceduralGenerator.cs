@@ -9,6 +9,8 @@ public class ProceduralGenerator : MonoBehaviour
     private int seed;
     private float perlinSeed;
 
+    public ProceduralWorld world;
+
     private void Awake()
     {
         if(instance == null)
@@ -20,6 +22,17 @@ public class ProceduralGenerator : MonoBehaviour
         {
             Destroy(this);
         }
+    }
+
+    private void Start()
+    {
+        world = new ProceduralWorld(world.minHeight, world.maxHeight, world.gridSize, world.detail, world.seed, world.genType);
+        Test();
+    }
+
+    public void Test()
+    {
+        world.Generate();
     }
 
     public void SetSeet(int newSeed)
