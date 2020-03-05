@@ -6,26 +6,26 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
 
+/// <summary>
+/// api documentation link
+/// https://jikan.docs.apiary.io/
+/// </summary>
+
 public class MalApi : JSONImageRequest
 {
     //public TMP_InputField inputField;
     //public TMP_Text text;
 
     public Image animeImage;
+    public Door lockedDoor;
 
     string animeImageUrl;
     string MALUsername;
 
     string randomAnimeName;
 
-    ApiState currState = ApiState.GetRandomAnime;
-
-    enum ApiState
-    {
-        GetRandomAnime,
-        AnimeQRCode,
-        MyAnimeListUser
-    }
+    [HideInInspector]
+    public ApiState currState = ApiState.GetRandomAnime;
 
     private void Start()
     {
@@ -81,20 +81,28 @@ public class MalApi : JSONImageRequest
                 animeImageUrl = randomAnimeNode["image_url"];
                 randomAnimeName = randomAnimeNode["title"];
 
+                //create QR code
                 currState = ApiState.AnimeQRCode;
                 Request();
                 break;
             case ApiState.MyAnimeListUser:
+                //TODO: it never seems to find the anime even tho i am kinda double checking my own list
                 // check if user has completed the serie
                 for (int i = 0; i < node["anime"].Count; i++)
                 {
                     JSONNode animeNode = node["anime"][i];
-                    Debug.Log(animeNode["title"]);
+                    //Debug.Log(animeNode["title"] + " == " + randomAnimeName);
                     if(animeNode["title"] == randomAnimeName)
                     {
                         // check if completed
-                        if (animeNode["watching status"] == "2")
-                            Debug.Log("anime is completed");
+                        if (animeNode["watched_episodes"] == animeNode["total_episodes"])
+                        {
+                            lockedDoor.locked = false;
+                            Debug.Log("anime is completed by player");
+
+                            break;
+                        }
+                        
                     }
                 }
                 break;
@@ -109,6 +117,7 @@ public class MalApi : JSONImageRequest
         animeImage.preserveAspect = true;
 
         currState = ApiState.MyAnimeListUser;
+        Request();
     }
 
     private string GetSeason(DateTime date)
@@ -118,5 +127,12 @@ public class MalApi : JSONImageRequest
         if (value < 6.21) return "spring";
         if (value < 9.23) return "summer";
         return "autumn";
+    }
+
+    public enum ApiState
+    {
+        GetRandomAnime,
+        AnimeQRCode,
+        MyAnimeListUser
     }
 }

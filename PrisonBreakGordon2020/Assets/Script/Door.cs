@@ -35,18 +35,36 @@ public class Door : MonoBehaviour, IInteractable
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            MalApi mal = FindObjectOfType<MalApi>();
+            if (mal.currState == MalApi.ApiState.MyAnimeListUser)
+                mal.Request();
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.O))
         {
-            if (Inventory.instance.HasKey(id))
+            if (!locked)
             {
-                Action();
+                if (Inventory.instance.HasKey(id))
+                {
+                    Action();
+                }
+                else
+                {
+                    doorEffect.PlayOneShot(doorWrong);
+                    Debug.Log("Bro you don't have the key you need " + id + " key");
+                }
             }
-            else
+            else if (FindObjectOfType<MalApi>().userCompleted)
             {
-                doorEffect.PlayOneShot(doorWrong);
-                Debug.Log("Bro you don't have the key you need " + id + " key");
+                locked = false;
+                Debug.Log("completed");
             }
             
         }

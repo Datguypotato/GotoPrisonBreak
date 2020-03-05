@@ -23,11 +23,24 @@ public class TerrainScape : LandScape
 
     public override void Generate()
     {
-        tData.heightmapResolution = ProceduralGenerator.instance.world.gridSize;
-        tData.SetHeights(0, 0, ProceduralGenerator.instance.world.heights);
+        ProceduralWorld w = ProceduralGenerator.instance.world;
+
+        tData.heightmapResolution = w.gridSize;
+
+        float[,] dividedHeights = new float[w.heights.GetLength(0), w.heights.GetLength(1)];
+        for (int x = 0; x < w.heights.GetLength(0); x++)
+        {
+            for (int z = 0; z < w.heights.GetLength(1); z++)
+            {
+                dividedHeights[x, z] = w.heights[x, z] / 1000;
+            }
+        }
+
+        tData.SetHeights(0, 0, dividedHeights);
     }
 
-    //does not work too heavy for computers
+    //does not work 
+    //too heavy for computers
 //    IEnumerator GenerateWave()
 //    {
 //        ProceduralWorld w = ProceduralGenerator.instance.world;
