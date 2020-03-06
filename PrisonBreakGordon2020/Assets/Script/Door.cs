@@ -61,11 +61,6 @@ public class Door : MonoBehaviour, IInteractable
                     Debug.Log("Bro you don't have the key you need " + id + " key");
                 }
             }
-            else if (FindObjectOfType<MalApi>().userCompleted)
-            {
-                locked = false;
-                Debug.Log("completed");
-            }
             
         }
     }
