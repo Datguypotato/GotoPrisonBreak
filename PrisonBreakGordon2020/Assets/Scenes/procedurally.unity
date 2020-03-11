@@ -405,11 +405,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   world:
     genType: 1
-    maxHeight: 6.9
+    maxHeight: 5
     minHeight: 0
     gridSize: 64
-    detail: 15.35
+    detail: 10
+    rockprobability: 0.01
     seed: 10
+    rockPrefabs:
+    - {fileID: 1982528261787520218, guid: 268e77ca0fb1ebf4ab4ff1f6624b5205, type: 3}
+    rockData: []
 --- !u!1 &1593505623
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,7 +464,10 @@ MonoBehaviour:
     minHeight: 0
     gridSize: 35
     detail: 5
+    rockprobability: 0
     seed: 10
+    rockPrefabs: []
+    rockData: []
 --- !u!114 &1593505626
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -23,15 +23,9 @@ public class ProceduralGenerator : MonoBehaviour
             Destroy(this);
         }
 
-        world = new ProceduralWorld(world.minHeight, world.maxHeight, world.gridSize, world.detail, world.seed, world.genType);
+        world = new ProceduralWorld(world.minHeight, world.maxHeight, world.gridSize, world.detail, world.seed, world.genType, world.rockPrefabs, world.rockprobability);
         SetSeed(world.seed);
     }
-
-    private void Start()
-    {
-
-    }
-
     public void SetSeed(int newSeed)
     {
         seed = newSeed;
