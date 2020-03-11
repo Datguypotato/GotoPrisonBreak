@@ -24,8 +24,6 @@ public class ProceduralWorld
 
     public ProceduralWorld(float minHeight, float maxHeight, int gridSize, float detail, int seed, GenerationType genType, GameObject[] rockPrefabs, float rockprobability)
     {
-        Debug.Log("I got here");
-
         this.minHeight = minHeight;
         this.maxHeight = maxHeight;
         this.gridSize = gridSize;
@@ -43,12 +41,14 @@ public class ProceduralWorld
 
     public void Generate()
     {
-        Debug.Log("0");
+        Vector2 midpoint = new Vector2(heights.GetLength(0) / 2, heights.GetLength(1) / 2);
+
         for (int x = 0; x < heights.GetLength(0); x++)
         {
             for (int z = 0; z < heights.GetLength(1); z++)
             {
                 float randomHeight = 0;
+                float distance = Vector2.Distance(midpoint, new Vector2(x, z));
 
                 switch (genType)
                 {
@@ -59,21 +59,31 @@ public class ProceduralWorld
                         float seed = ProceduralGenerator.instance.GetPerlinSeed();
                         float perlinX = (float)x / detail + seed;
                         float perlinZ = (float)z / detail + seed;
+                        
                         randomHeight = (Mathf.PerlinNoise(perlinX, perlinZ) - minHeight) * maxHeight;
                         break;
                     case GenerationType.cosine:
-                        randomHeight = Mathf.Cos(x + z) / detail * maxHeight;
+                        randomHeight = Mathf.Cos(distance / detail) * maxHeight;
                         break;
                     default:
-                        Debug.LogError("Switch case broke");
+                        Debug.LogError("Unexpected enum");
+                        break;
+                    case GenerationType.island:
+                        float pSeed = ProceduralGenerator.instance.GetPerlinSeed();
+                        float perlinXisland = (float)x / detail + pSeed;
+                        float perlinZisland = (float)z / detail + pSeed;
+
+                        randomHeight = (Mathf.PerlinNoise(perlinXisland, perlinZisland) - minHeight) * maxHeight + (Mathf.Cos(distance / detail) * maxHeight);
+
+                        if (randomHeight > maxHeight)
+                            randomHeight += UnityEngine.Random.Range(minHeight, maxHeight) / distance;
                         break;
                 }
-
                 heights[x, z] = randomHeight;
 
                 float rockBand = UnityEngine.Random.Range(0.0f, 1.0f);
 
-                if(rockBand > rockprobability)
+                if(rockBand - (randomHeight / 500) < rockprobability)
                 {
                     int t = UnityEngine.Random.Range(0, rockPrefabs.Length);
                     Vector3Int rock = new Vector3Int(x, z, t);
@@ -93,4 +103,5 @@ public enum GenerationType
     Random,
     Perlin,
     cosine,
+    island
 }

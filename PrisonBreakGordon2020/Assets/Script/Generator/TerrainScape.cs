@@ -28,12 +28,30 @@ public class TerrainScape : LandScape
 
         tData.heightmapResolution = w.gridSize;
 
+        // the last array index should be the number of layers the terrain has
+        float[,,] map = new float[w.heights.GetLength(0), w.heights.GetLength(1), 4];
+
         float[,] dividedHeights = new float[w.heights.GetLength(0), w.heights.GetLength(1)];
         for (int x = 0; x < w.heights.GetLength(0); x++)
         {
             for (int z = 0; z < w.heights.GetLength(1); z++)
             {
-                dividedHeights[x, z] = w.heights[x, z] / 1000;
+                if(x == 0 || x == w.heights.GetLength(0) || z == 0 || z == w.heights.GetLength(1))
+                {
+                    dividedHeights[x, z] = 0;
+                }
+                else
+                {
+                    dividedHeights[x, z] = w.heights[x, z] / 1000;
+                }
+
+                // painting terrain
+                
+                // divide max height to 3 values and those three value is going to be the limit for each layer
+
+
+                // assign these texture
+                //tData.SetAlphamaps(x,z, )
             }
         }
 
@@ -48,9 +66,12 @@ public class TerrainScape : LandScape
                 Map(w.rockData[i].y, 0, w.gridSize, t.GetPosition().z, t.GetPosition().z + tData.size.z));
 
             rockpos.y = t.SampleHeight(rockpos);
+            Quaternion rockRot = Quaternion.Euler(Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f)); ;
 
-            Instantiate(w.rockPrefabs[0], rockpos, Quaternion.identity, transform);
+            Instantiate(w.rockPrefabs[Random.Range(0, w.rockPrefabs.Length)], rockpos, rockRot, transform);
         }
+
+        
     }
 
     public override void Clean()
