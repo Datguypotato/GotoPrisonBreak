@@ -57,6 +57,8 @@ public class TerrainScape : LandScape
 
         tData.SetHeights(0, 0, dividedHeights);
         
+        //spawning rocks
+
         for (int i = 0; i < ProceduralGenerator.instance.world.rockData.Count; i++)
         {
 
@@ -65,7 +67,7 @@ public class TerrainScape : LandScape
                 0,
                 Map(w.rockData[i].y, 0, w.gridSize, t.GetPosition().z, t.GetPosition().z + tData.size.z));
 
-            rockpos.y = t.SampleHeight(rockpos);
+            rockpos.y = t.SampleHeight(rockpos) + transform.position.y;
             Quaternion rockRot = Quaternion.Euler(Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f)); ;
 
             Instantiate(w.rockPrefabs[Random.Range(0, w.rockPrefabs.Length)], rockpos, rockRot, transform);
