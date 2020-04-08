@@ -6,6 +6,7 @@ public class InventoryUI : MonoBehaviour
 {
     public static InventoryUI instance;
     public List<InventoryUISlot> slots;
+    public Sprite emptySlot;
 
     private void Awake()
     {
@@ -26,7 +27,7 @@ public class InventoryUI : MonoBehaviour
         {
             if (!slots[i].filled)
             {
-                slots[i].FillSlot(icon, item.name);
+                slots[i].FillSlot(icon, item);
                 break;
             }
         }
@@ -35,6 +36,5 @@ public class InventoryUI : MonoBehaviour
     public void RemoveItemSlot(int slotIndex)
     {
         slots[slotIndex].EmptySlot();
-        //Inventory.instance.RemoveItem()
     }
 }

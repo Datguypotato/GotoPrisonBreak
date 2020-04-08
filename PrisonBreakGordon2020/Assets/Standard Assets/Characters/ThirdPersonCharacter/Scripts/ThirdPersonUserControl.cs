@@ -76,5 +76,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             m_Character.Move(Vector3.zero, false, false);
         }
+
+        public Vector3 GetForward()
+        {
+            return m_CamForward;
+        }
     }
+
+
 }

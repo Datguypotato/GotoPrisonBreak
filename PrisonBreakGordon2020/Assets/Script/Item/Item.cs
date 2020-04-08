@@ -1,14 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-public abstract class Item
+public class Item
 {
     // properties
     public string name;
     public float weight;
 
     // constructors
-
     /// <summary>
     /// this is for testing purposes
     /// </summary>
@@ -25,5 +24,4 @@ public abstract class Item
     }
 
     // method(s)
-
 }

@@ -27,11 +27,6 @@ public class MalApi : JSONImageRequest
     [HideInInspector]
     public ApiState currState = ApiState.GetRandomAnime;
 
-    private void Start()
-    {
-        //Request();
-    }
-
     public void AssignUsername(string username)
     {
         if(username != "")

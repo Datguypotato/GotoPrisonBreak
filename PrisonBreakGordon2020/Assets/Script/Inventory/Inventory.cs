@@ -27,7 +27,6 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
-        
         currWeight = 0;
     }
 
@@ -45,30 +44,18 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public bool RemoveItem(int index)
+    public bool RemoveItem(Item i)
     {
-        if(items[index] != null)
+        if (items.Contains(i))
         {
-            items[index] = null;
-
-
+            items.Remove(i);
+            currWeight -= i.weight;
             return true;
         }
         else
         {
             return false;
         }
-        //// todo change the function so it can be called from InventoryUI
-        //if (items.Contains(i))
-        //{
-        //    items.Remove(i);
-        //    currWeight -= i.weight;
-        //    return true;
-        //}
-        //else
-        //{
-        //    return false;
-        //}
     }
 
     public bool HasKey(int id)
@@ -87,8 +74,17 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    public int Count()
+    public int GetAmountLog()
     {
-        return items.Count;
+        int amountLogsInInventory = 0;
+        for (int i = 0; i < items.Count; i++)
+        {
+            if(items[i].name == "raft part")
+            {
+                amountLogsInInventory++;
+            }
+        }
+
+        return amountLogsInInventory;
     }
 }

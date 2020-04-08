@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour, IInteractable
+public class Door : BaseInteractable, IInteractable
 {
     public int id;
     public bool open = false;
@@ -13,8 +13,9 @@ public class Door : MonoBehaviour, IInteractable
     AudioSource doorEffect;
     public AudioClip doorOpen, doorWrong;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         initialRotation = transform.rotation.eulerAngles.y;
         doorEffect = GetComponent<AudioSource>();
     }
@@ -35,8 +36,9 @@ public class Door : MonoBehaviour, IInteractable
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
+        base.OnTriggerEnter(other);
         if (other.CompareTag("Player"))
         {
             MalApi mal = FindObjectOfType<MalApi>();
@@ -45,7 +47,7 @@ public class Door : MonoBehaviour, IInteractable
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    protected override void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.O))
         {
@@ -65,9 +67,12 @@ public class Door : MonoBehaviour, IInteractable
         }
     }
 
-    public void Action()
+    public override void Action()
     {
-        open = !open;
-        doorEffect.PlayOneShot(doorOpen);
+        if (Input.GetKeyDown(KeyCode.O) && Inventory.instance.HasKey(id))
+        {
+            open = !open;
+            doorEffect.PlayOneShot(doorOpen);
+        }
     }
 }

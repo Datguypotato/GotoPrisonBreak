@@ -11,16 +11,13 @@ public class CustomInspector : Editor
         ProceduralGenerator gen = (ProceduralGenerator)target;
         if(GUILayout.Button("Generate World"))
         {
-            for (int i = 0; i < 2; i++)
-            {
-                ProceduralWorld w = ProceduralGenerator.instance.world;
-                ProceduralGenerator.instance.world = new ProceduralWorld(w.minHeight, w.maxHeight, w.gridSize, w.detail, w.seed, w.genType, w.rockPrefabs, w.rockprobability);
-                ProceduralGenerator.instance.SetSeed(w.seed);
+            ProceduralWorld w = ProceduralGenerator.instance.world;
+            ProceduralGenerator.instance.world = new ProceduralWorld(w.minHeight, w.maxHeight, w.gridSize, w.detail, w.seed, w.genType, w.rockPrefabs, w.rockprobability);
+            ProceduralGenerator.instance.SetSeed(w.seed);
 
-                LandScape scape = FindObjectOfType<LandScape>();
-                scape.Clean();
-                scape.Generate();
-            }
+            LandScape scape = FindObjectOfType<LandScape>();
+            scape.Clean();
+            scape.Generate();
         }
     }
 }

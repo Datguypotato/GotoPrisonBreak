@@ -16,7 +16,6 @@ public class DestroyTeleporter : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             anim.SetBool("PlayerThrough", true);
-            Debug.Log("0");
         }
             
     }

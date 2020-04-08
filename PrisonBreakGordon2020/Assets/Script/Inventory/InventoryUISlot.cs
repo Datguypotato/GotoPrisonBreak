@@ -10,6 +10,7 @@ public class InventoryUISlot : MonoBehaviour
 
     Image icon;
     TextMeshProUGUI text;
+    Item itemInSlot;
 
     private void Start()
     {
@@ -17,18 +18,23 @@ public class InventoryUISlot : MonoBehaviour
         text = GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    public void FillSlot(Sprite icon, string name)
+    public void FillSlot(Sprite icon, Item item)
     {
-        text.text = name;
+        itemInSlot = item;
+        text.text = item.name;
         this.icon.sprite = icon;
         filled = true;
     }
 
     public void EmptySlot()
     {
-        icon = null;
-        text.text = "";
-        filled = false;
+        if (Inventory.instance.RemoveItem(this.itemInSlot))
+        {
+            icon.sprite = InventoryUI.instance.emptySlot;
+            text.text = "";
+            filled = false;
+            itemInSlot = null;
+        }
     }
 
 }

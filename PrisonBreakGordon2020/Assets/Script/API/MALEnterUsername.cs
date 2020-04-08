@@ -8,6 +8,7 @@ using SimpleJSON;
 
 public class MALEnterUsername : BaseJSONRequest
 {
+    public GameObject inputObject;
     public TMP_InputField inputUsername;
 
     public Sprite redX;
@@ -20,7 +21,7 @@ public class MALEnterUsername : BaseJSONRequest
     {
         mal = FindObjectOfType<MalApi>();
 
-        inputUsername.gameObject.SetActive(false);
+        inputObject.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -56,23 +57,13 @@ public class MALEnterUsername : BaseJSONRequest
         StartCoroutine(RequestJson("https://api.jikan.moe/v3/user/" + inputUsername.text));
     }
 
-    private void OnTriggerStay(Collider other)
+    public void SetupLogin()
     {
-        if (other.CompareTag("Player"))
-        {
-            if (Input.GetKeyDown(KeyCode.O) && !inputUsername.gameObject.activeSelf)
-            {
-                // update inputfield to worldspace 
-                inputUsername.gameObject.SetActive(true);
+        inputObject.gameObject.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
 
-                // open UI
-                inputUsername.gameObject.SetActive(true);
-                Cursor.lockState = CursorLockMode.None;
-
-                character = other.gameObject.GetComponent<ThirdPersonUserControl>();
-                StartCoroutine(StopPlayerMovement());
-            }
-        }
+        character = FindObjectOfType<ThirdPersonUserControl>();
+        StartCoroutine(StopPlayerMovement());
     }
 
     IEnumerator StopPlayerMovement()
@@ -94,7 +85,7 @@ public class MALEnterUsername : BaseJSONRequest
             character.enabled = true;
 
             // UI
-            inputUsername.gameObject.SetActive(false);
+            inputObject.gameObject.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
 
             Debug.Log(node["username"]);
@@ -106,4 +97,6 @@ public class MALEnterUsername : BaseJSONRequest
             Debug.Log("LMAO dude doesn't exist you dip");
         }
     }
+
+
 }
